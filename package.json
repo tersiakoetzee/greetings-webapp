@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "mocha" : ".node_modules/bin/mocha",
+    "mocha": ".node_modules/bin/mocha",
     "start": "node index.js"
   },
   "author": "Tersia Koetzee",
@@ -19,7 +19,9 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "express-flash": "0.0.2",
     "express-handlebars": "^3.1.0",
+    "express-session": "^1.16.2",
     "moment": "^2.24.0"
   }
 }
