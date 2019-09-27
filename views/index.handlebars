@@ -1,0 +1,82 @@
+
+    <div class="row">
+        <div class="col-12">
+            <div class="greet">
+                <h1>Greeting</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class=" col-12">
+            <div class="name">
+                <span>
+                    Name:
+                </span>
+                <span>
+                    <input class="fname" type="text" id="textName" name="name">
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="greetingDiv">{{name}}</div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="counter">Counter: {{counter}}</div>
+            </div>
+
+            <div class="col-6">
+                <div class="numberMessage">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="radioBtn">
+
+                    <label class="radio-inline">
+
+                        <span> 
+                            <input type="radio" name="radiobut" value="English" class="language" id="language">
+                            English
+                        </span>
+                        <span> 
+                            <input type="radio" name="radiobut" value="isiXhosa" class="language">
+                            isiXhosa
+                        </span>
+
+                        <span>
+                            <input type="radio" name="radiobut" value="Afrikaans" class="language">
+                            Afrikaans
+                        </span>
+
+                        
+
+                    </label>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <input type="button" name="greetBtn" class="clicked" value="Greet Me">
+                <p id="lang"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <input type="button" name="resetGreet" class="clickReset" value="Reset Greeting">
+            </div>
+        </div>
+
+    </div>

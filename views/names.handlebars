@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-5">
+        <h1>Names greeted</h1>
+        <table>
+            {{#each nameList}}
+            <tr>
+                <td><a href="/counter/{{name}}">{{name}}</a></td>
+            </tr>
+            {{/each}}
+        </table>
+        
+
+        <label sfor="who">{{messages.amount}}</label>
+    </div>
+</div>

@@ -1,0 +1,63 @@
+  body{ 
+  background-image: url(clouds.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  
+  h1{
+    color: black;
+    display: flex;
+    justify-content: center;
+  }
+
+  .name{
+  justify-content: center;
+  display: flex;
+  } 
+
+  .radioBtn{ 
+  justify-content:center;
+  display: flex;
+  font-size: 15px;
+  }
+ 
+  span{
+  color: black;
+  padding: 0.5em;
+  }
+  
+  .clicked{
+    display: block;
+  max-width: 200px;
+  margin: auto;
+  margin-top: 1em;
+  font-size: 1em;
+  color: black;
+  }
+
+  .greetingDiv{
+  justify-content: center;
+  display: flex;
+  color: black;
+  font-size: 20px;
+  
+  }
+
+  .counter{
+    justify-content: center;
+    display: flex;
+  color: black;
+  font-size: 20px; 
+  }  
+.clickReset{
+  display: block;
+  max-width: 200px;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 15em;
+  font-size: 1em;
+  color: black;
+}
+.col-12{
+  padding-block: auto;
+}
