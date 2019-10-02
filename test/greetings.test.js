@@ -6,7 +6,7 @@ describe("The greetFactory", function () {
     it("should get the name entered and greet in english ", function () {
         let greeting = greetFactory();
 
-        greeting.getName("Jen", "English")
+        greeting.setGreeting("Jen", "English")
         assert.equal("Hello, Jen", greeting.output())
 
 
@@ -15,7 +15,7 @@ describe("The greetFactory", function () {
     it("should get the name entered and greet in isiXhosa ", function () {
         let greeting = greetFactory();
 
-        greeting.getName("Axola", "isiXhosa")
+        greeting.setGreeting("Axola", "isiXhosa")
         assert.equal("Molo, Axola", greeting.output())
 
 
@@ -24,7 +24,7 @@ describe("The greetFactory", function () {
     it("should get the name entered and greet in Afrikaans", function () {
         let greeting = greetFactory();
 
-        greeting.getName("Fred", "Afrikaans")
+        greeting.setGreeting("Fred", "Afrikaans")
         assert.equal("Hallo, Fred", greeting.output())
 
 
@@ -34,7 +34,7 @@ describe("The greetFactory", function () {
     it("should return Please Enter Name and Select Language, if no name was entered and no language was selected", function () {
         let greeting = greetFactory();
 
-        greeting.getName("", "")
+        greeting.setGreeting("", "")
         assert.equal("Please Enter Name and Select Language", greeting.output())
 
 
@@ -42,7 +42,7 @@ describe("The greetFactory", function () {
     it("should return No Name Entered, if no name was entered", function () {
         let greeting = greetFactory();
 
-        greeting.getName("")
+        greeting.setGreeting("")
         assert.equal("No Name Entered", greeting.output())
 
 
@@ -51,8 +51,8 @@ describe("The greetFactory", function () {
     it("if a name was entered but no language selected return, No Language Selected", function () {
         let greeting = greetFactory();
 
-        greeting.getName("Gill", "")
-        assert.equal("No Language Selected", greeting.output())
+        greeting.setGreeting("Gill", "")
+        assert.equal("No language selected", greeting.output())
 
 
     })

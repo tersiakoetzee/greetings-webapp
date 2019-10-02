@@ -15,12 +15,12 @@ module.exports = function greetFactory(listOfNames) {
       }
     }
  
-    if (theLanguage === undefined && upperCaseName === "") {
+    if (theLanguage === "" && upperCaseName === "") {
       theGreeting = "Please Enter Name and Select Language";
     } else if (upperCaseName === "") {
       theGreeting = "No Name Entered";
-    } else if (theLanguage === undefined) {
-    //  req.flash('info', 'Select a language!');
+    } else if (theLanguage === "") {
+    theGreeting = 'No language selected'
     }else if (theLanguage === "English") {
       theGreeting = "Hello, " + upperCaseName;
     } else if (theLanguage === "isiXhosa") {
