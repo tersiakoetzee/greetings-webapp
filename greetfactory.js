@@ -3,22 +3,25 @@ module.exports = function greetFactory(listOfNames) {
   var namesGreeted = listOfNames || {};
   var theGreeting = "";
 
-  function getName(textVal, theLanguage) {
-    var upperCaseName = textVal.toUpperCase();
-
+  function setGreeting(textVal, theLanguage) {
+    
+    console.log(textVal);
+    
+    var upperCaseName = textVal.charAt(0).toUpperCase() + textVal.slice(1);
+    console.log(textVal);
     if (textVal) {
       if (namesGreeted[upperCaseName] === undefined) {
         namesGreeted[upperCaseName] = 0;
       }
     }
-    var upperCaseName = textVal.charAt(0).toUpperCase() + textVal.slice(1);
-    if (upperCaseName === "" && theLanguage === "") {
+ 
+    if (theLanguage === undefined && upperCaseName === "") {
       theGreeting = "Please Enter Name and Select Language";
     } else if (upperCaseName === "") {
       theGreeting = "No Name Entered";
-    } else if (theLanguage === "") {
-      theGreeting = "No Language Selected";
-    } else if (theLanguage === "English") {
+    } else if (theLanguage === undefined) {
+    //  req.flash('info', 'Select a language!');
+    }else if (theLanguage === "English") {
       theGreeting = "Hello, " + upperCaseName;
     } else if (theLanguage === "isiXhosa") {
       theGreeting = "Molo, " + upperCaseName;
@@ -45,7 +48,7 @@ module.exports = function greetFactory(listOfNames) {
 
   return {
     output,
-    getName,
+    setGreeting,
     setCounter,
     // name,
     storedNames,

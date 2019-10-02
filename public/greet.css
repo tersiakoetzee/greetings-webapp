@@ -61,3 +61,6 @@
 .col-12{
   padding-block: auto;
 }
+.error{
+  color: red;
+}

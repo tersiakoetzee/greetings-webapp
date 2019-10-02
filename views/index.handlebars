@@ -1,4 +1,3 @@
-
     <div class="row">
         <div class="col-12">
             <div class="greet">
@@ -7,6 +6,7 @@
         </div>
     </div>
 
+    <form  action="/greetings" method="POST">
 
     <div class="row">
         <div class=" col-12">
@@ -15,13 +15,13 @@
                     Name:
                 </span>
                 <span>
-                    <input class="fname" type="text" id="textName" name="name">
+                    <input class="fname" type="text" id="textName" pattern='[A-Za-z\\s]*' title="Names should only consist of letters" name="name">
                 </span>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="greetingDiv">{{name}}</div>
+                <div class="greetingDiv"  name="greetingDiv">{{names}}</div>
 
             </div>
         </div>
@@ -31,11 +31,10 @@
             </div>
 
             <div class="col-6">
-                <div class="numberMessage">
-
-                </div>
+                <div class="error">{{messages.error}}</div>
             </div>
         </div>
+        
 
         <div class="row">
             <div class="col-12">
@@ -44,21 +43,18 @@
                     <label class="radio-inline">
 
                         <span> 
-                            <input type="radio" name="radiobut" value="English" class="language" id="language">
+                            <input type="radio" name="language" value="English" class="language" id="language">
                             English
                         </span>
                         <span> 
-                            <input type="radio" name="radiobut" value="isiXhosa" class="language">
+                            <input type="radio" name="language" value="isiXhosa" class="language">
                             isiXhosa
                         </span>
 
                         <span>
-                            <input type="radio" name="radiobut" value="Afrikaans" class="language">
+                            <input type="radio" name="language" value="Afrikaans" class="language">
                             Afrikaans
                         </span>
-
-                        
-
                     </label>
 
                 </div>
@@ -69,7 +65,7 @@
 
         <div class="row">
             <div class="col-12">
-                <input type="button" name="greetBtn" class="clicked" value="Greet Me">
+                <input type="submit" name="greetBtn" class="clicked" value="Greet Me">
                 <p id="lang"></p>
             </div>
         </div>
@@ -80,3 +76,4 @@
         </div>
 
     </div>
+    </form>
