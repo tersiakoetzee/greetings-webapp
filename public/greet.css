@@ -62,7 +62,9 @@
   padding-block: auto;
 }
 .error{
+  font-size: 1.5em;
+  font-weight: bold;
   justify-content: center;
-  margin-left: 20em;
+  margin-left: 10em;
   color: red;
 }
