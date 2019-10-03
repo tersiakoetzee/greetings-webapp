@@ -1,12 +1,12 @@
-    <div class="row">
-        <div class="col-12">
-            <div class="greet">
-                <h1>Greeting</h1>
-            </div>
+<div class="row">
+    <div class="col-12">
+        <div class="greet">
+            <h1>Greeting</h1>
         </div>
     </div>
+</div>
 
-    <form  action="/greetings" method="POST">
+<form action="/greetings" method="POST">
 
     <div class="row">
         <div class=" col-12">
@@ -15,26 +15,29 @@
                     Name:
                 </span>
                 <span>
-                    <input class="fname" type="text" id="textName" pattern='[A-Za-z\\s]*' title="Names should only consist of letters" name="name">
+                    <input class="fname" type="text" id="textName" pattern='[A-Za-z\\s]*'
+                        title="Names should only consist of letters" name="name">
                 </span>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="greetingDiv"  name="greetingDiv">{{names}}</div>
+                <div class="greetingDiv" name="greetingDiv">{{names}}</div>
 
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12">
                 <div class="counter">Counter: {{counter}}</div>
             </div>
+        </div>
 
-            <div class="col-6">
-                <div class="error">{{messages.error}}</div>
+        <div class="row">
+            <div class="col-12">
+                <div class="error">{{messages}}</div>
             </div>
         </div>
-        
+
 
         <div class="row">
             <div class="col-12">
@@ -42,11 +45,11 @@
 
                     <label class="radio-inline">
 
-                        <span> 
+                        <span>
                             <input type="radio" name="language" value="English" class="language" id="language">
                             English
                         </span>
-                        <span> 
+                        <span>
                             <input type="radio" name="language" value="isiXhosa" class="language">
                             isiXhosa
                         </span>
@@ -76,4 +79,4 @@
         </div>
 
     </div>
-    </form>
+</form>

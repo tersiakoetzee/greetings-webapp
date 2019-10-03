@@ -62,5 +62,7 @@
   padding-block: auto;
 }
 .error{
+  justify-content: center;
+  margin-left: 20em;
   color: red;
 }
