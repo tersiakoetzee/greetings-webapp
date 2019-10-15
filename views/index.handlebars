@@ -22,6 +22,14 @@
         </div>
         <div class="row">
             <div class="col-12">
+                <div class="data">
+                    <a href="/greeted">Users Greeted:</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
                 <div class="greetingDiv" name="greetingDiv">{{names}}</div>
 
             </div>
@@ -68,15 +76,21 @@
 
         <div class="row">
             <div class="col-12">
-                <input type="submit" name="greetBtn" class="clicked" value="Greet Me">
-                <p id="lang"></p>
+                <form action="/name" method="POST">
+                    <input type="submit" name="greetBtn" class="clicked" value="Greet Me">
+                    <p id="lang"></p>
+                </form>
             </div>
         </div>
+
         <div class="row">
             <div class="col-12">
-                <input type="button" name="resetGreet" class="clickReset" value="Reset Greeting">
+                <form action="/nameCleared" method="POST">
+                    <input type="submit" name="resetGreet" class="clickReset" value="Reset Greeting">
+                </form>
             </div>
         </div>
+
 
     </div>
 </form>

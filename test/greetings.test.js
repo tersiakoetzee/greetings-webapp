@@ -1,48 +1,72 @@
-let assert = require("assert");
-let greetFactory = require("../greetfactory");
 
-describe("The greetFactory", function () {
-
-    it("should get the name entered and greet in english ", function () {
-        let greeting = greetFactory();
-
-        greeting.setGreeting("Jen", "English")
-        assert.equal("Hello, Jen", greeting.output())
+const assert = require('assert');
+const greetFactory = require('../greetfactory');
+const pg = require("pg");
+const Pool = pg.Pool;
 
 
-    })
-
-    it("should get the name entered and greet in isiXhosa ", function () {
-        let greeting = greetFactory();
-
-        greeting.setGreeting("Axola", "isiXhosa")
-        assert.equal("Molo, Axola", greeting.output())
+const connectionString = process.env.DATABASE_URL || "postgresql://codex:codex123@localhost/names_greeted";
 
 
-    })
-
-    it("should get the name entered and greet in Afrikaans", function () {
-        let greeting = greetFactory();
-
-        greeting.setGreeting("Fred", "Afrikaans")
-        assert.equal("Hallo, Fred", greeting.output())
-
-
-    })
-
+const pool = new Pool({
+    connectionString
 });
 
-describe("The setCounter function", function () {
 
-    it("only allow a name to be enterded once", function () {
-        let greeting = greetFactory();
-
-        greeting.storedNames("Mia")
-        greeting.storedNames("Mia")
-        greeting.storedNames("Mia")
-        assert.equal(greeting.loadingName(1))
-
+describe("The greetFactory", function () {
+    beforeEach(async () => {
+        await pool.query('DELETE FROM names_greeted;');
     })
+    describe("The setCounter function", async function () {
+        it("should get the name entered and greet in english if the selected language is english ", async function () {
+
+
+            let greeting = greetFactory(pool);
+
+            await greeting.setGreeting("Jen", "English")
+            assert.equal("Hello, Jen", await greeting.output())
+
+
+        })
+
+        it("should get the name entered and greet in isiXhosa if the selected language is isXhosa", async function () {
+            let greeting = greetFactory(pool);
+
+            await greeting.setGreeting("Axola", "isiXhosa")
+            assert.equal("Molo, Axola", await greeting.output())
+
+
+        })
+
+        it("should get the name entered and greet in Afrikaans if the selected language is afrikaans", async function () {
+            let greeting = greetFactory(pool);
+
+            await greeting.setGreeting("Fred", "Afrikaans")
+            assert.equal("Hallo, Fred", await greeting.output())
+
+
+        })
+    });
+    describe("The setCounter function", async function () {
+        it("only count a name once", async function () {
+            let greeting = greetFactory(pool);
+
+            await greeting.setGreeting("Mia")
+            await greeting.setGreeting("Mia")
+            await greeting.setGreeting("Mia")
+            var test = await greeting.setCounter()
+            assert.equal(1, test.length);
+        })
+        it("should count 3 if three different names are entered", async function () {
+            let greeting = greetFactory(pool);
+            // await greeting.clearNamesStore();
+
+            await greeting.setGreeting("Mia")
+            await greeting.setGreeting("Jack")
+            await greeting.setGreeting("Kim")
+            assert.equal(await greeting.setCounter(), 3);
+        })
+    });
 
 
 });

@@ -68,3 +68,30 @@
   margin-left: 10em;
   color: red;
 }
+.greetLog{
+  display: block;
+  max-width: 200px;
+  margin: auto;
+  margin-top: 1em;
+  font-size: 1em;
+  color: black;  
+}
+
+  table, td {
+    width: 50%;
+    margin-top: 2em;
+    margin-left: 10em;
+    font-size: 1.5em;
+    color: black;
+    border: 1px solid black; 
+  }
+  
+  th {
+    height: 40px;
+  }
+
+  .data{
+    justify-content: center;
+    margin-left: 25em; 
+  }
+ 

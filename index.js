@@ -6,8 +6,15 @@ const bodyParser = require('body-parser')
 const greetingFactory = require('./greetfactory')
 
 const app = express();
-const GreetFactory = greetingFactory()
 const handle = require("./routes")
+const pg = require('pg');
+const Pool = pg.Pool;
+
+const pool = new Pool({
+    connectionString: "postgresql://codex:codex123@localhost/names_greeted"
+});
+
+const GreetFactory = greetingFactory(pool)
 const greetName = handle(GreetFactory)
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,7 +35,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
 app.use(session({
-    secret: "<Please Enter Name and Select Language>",
+    secret: "error",
     resave: false,
     saveUninitialized: true
 }));
@@ -40,19 +47,34 @@ app.get('/', greetName.greetHandles);
 
 
 
-app.post('/greetings', function (req, res) {
+app.post('/greetings', async function (req, res) {
 
     if (req.body.name === "" || req.body.language === undefined) {
-        req.flash('error', 'Please enter your name then select a language');
-
-    }
-    GreetFactory.setGreeting(req.body.name, req.body.language)
+        req.flash('error', 'Please enter your name and select a language');
+    } ;
+    
+    await GreetFactory.setGreeting(req.body.name, req.body.language)
 
     res.redirect('/')
+
 });
 
+app.get('/greeted', greetName.dataTable); 
 
-const PORT = process.env.PORT || 3000;
+app.get('/count', async function (req, res) {
+
+    res.render("count", { counter: GreetFactory.setCounter() })
+})
+
+app.post('/nameCleared', async function (req, res){
+    
+    await GreetFactory.clearNamesStore()
+    res.redirect('/')
+    
+
+});
+
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, function () {
     console.log('start' + PORT);
 });

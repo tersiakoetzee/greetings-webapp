@@ -1,19 +1,26 @@
 module.exports = function greetFunction(GreetFactory) {
 
-    function greetHandles(req , res) {
-        
+    async function greetHandles(req, res) {
         res.render('index', {
-
-
-            names: GreetFactory.output(),
-            counter: GreetFactory.setCounter(),
-            messages:req.flash('error')
+            names: await GreetFactory.output(),
+            counter: await GreetFactory.setCounter(),
+            messages: req.flash('error') 
 
         })
     }
+    async function clearnames() {
+        await GreetFactory.clearNamesStore();
 
+    }
+
+    async function dataTable(req, res){
+    res.render('table', {name:await GreetFactory.loadingName() })
+    }
 
     return {
-        greetHandles
+        greetHandles,
+        clearnames,
+        dataTable
+    
     }
-}
+} 

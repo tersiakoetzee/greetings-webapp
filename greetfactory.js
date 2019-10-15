@@ -1,27 +1,25 @@
-module.exports = function greetFactory(listOfNames) {
+module.exports = function greetFactory(pool) {
 
-  var namesGreeted = listOfNames || {};
   var theGreeting = "";
 
-  function setGreeting(textVal, theLanguage) {
-
-    console.log(textVal);
+  async function setGreeting(textVal, theLanguage) {
 
     var upperCaseName = textVal.charAt(0).toUpperCase() + textVal.slice(1);
-    console.log(textVal);
-    if (textVal) {
-      if (namesGreeted[upperCaseName] === undefined) {
-        namesGreeted[upperCaseName] = 0;
+
+    if (upperCaseName === "") {
+      return 'test'
+    } else {
+
+      var listname = await pool.query('SELECT * FROM names_greeted WHERE name = $1', [upperCaseName]);
+
+      if (listname.rows.length === 1) {
+        await pool.query('UPDATE names_greeted SET times_greeted = times_greeted +1 WHERE name = $1', [upperCaseName]);
+
+      } else {
+        await pool.query('insert into names_greeted (name, times_greeted) values ($1, $2) returning name, times_greeted', [upperCaseName, 1]);
       }
     }
-
-    // if (theLanguage === "" && upperCaseName === "") {
-    //   theGreeting = "Please Enter Name and Select Language";
-    // } if (upperCaseName === "") {
-    //   theGreeting = "No Name Entered";
-    // } if (theLanguage === "") {
-    //   theGreeting = 'No language selected'
-     if (theLanguage === "English") {
+    if (theLanguage === "English") {
       theGreeting = "Hello, " + upperCaseName;
     } if (theLanguage === "isiXhosa") {
       theGreeting = "Molo, " + upperCaseName;
@@ -30,30 +28,32 @@ module.exports = function greetFactory(listOfNames) {
     }
   }
 
-  function output() {
-    return theGreeting;
+  async function output() {
+    return theGreeting
   }
 
-  function setCounter() {
-    var list = Object.keys(namesGreeted);
-    return list.length;
+
+  async function setCounter() {
+    let results = await pool.query('select COUNT(*) from names_greeted');
+    return results.rows[0].count;
   }
 
-  function storedNames() {
-    return namesGreeted;
+  async function loadingName() {
+    let personGreeted = await pool.query('SELECT * FROM names_greeted');
+    let howmanyGreetings = personGreeted.rows;
+    return howmanyGreetings
   }
-  function loadingName() {
-    namesGreeted = {};
+
+  async function clearNamesStore() {
+    await pool.query('DELETE FROM names_greeted');
   }
 
   return {
     output,
     setGreeting,
     setCounter,
-    // name,
-    storedNames,
-    loadingName
+    loadingName,
+    clearNamesStore,
+
   }
 }
-
-
