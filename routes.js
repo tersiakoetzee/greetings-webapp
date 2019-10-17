@@ -10,7 +10,7 @@ module.exports = function greetFunction(GreetFactory) {
     }
     async function clearnames() {
         await GreetFactory.clearNamesStore();
-
+        res.redirect('/')
     }
 
     async function dataTable(req, res){
