@@ -11,7 +11,7 @@ const pg = require('pg');
 const Pool = pg.Pool;
 
 const pool = new Pool({
-    connectionString: env.process.DATABASE_URL || "postgresql://codex:codex123@localhost/names_greeted"
+    connectionString: process.env.DATABASE_URL || "postgresql://codex:codex123@localhost/names_greeted"
 });
 
 const GreetFactory = greetingFactory(pool)
