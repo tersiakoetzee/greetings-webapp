@@ -59,7 +59,6 @@ describe("The greetFactory", function () {
         })
         it("should count 3 if three different names are entered", async function () {
             let greeting = greetFactory(pool);
-            // await greeting.clearNamesStore();
 
             await greeting.setGreeting("Mia")
             await greeting.setGreeting("Jack")
