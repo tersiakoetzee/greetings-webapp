@@ -11,7 +11,7 @@ const pg = require('pg');
 const Pool = pg.Pool;
 
 const pool = new Pool({
-    connectionString: "postgresql://codex:codex123@localhost/names_greeted"
+    connectionString: env.process.DATABASE_URL || "postgresql://codex:codex123@localhost/names_greeted"
 });
 
 const GreetFactory = greetingFactory(pool)
@@ -63,7 +63,7 @@ app.get('/greeted', greetName.dataTable);
 
 app.get('/count', async function (req, res) {
 
-    res.render("count", { counter: GreetFactory.setCounter() })
+    res.render("count", { counter: await GreetFactory.setCounter() })
 })
 
 app.post('/nameCleared', async function (req, res){

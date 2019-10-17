@@ -1,20 +1,24 @@
-module.exports = function greetFunction(GreetFactory) {
+const greetMe =  require("./greetfactory");
+
+module.exports = function greetFunction(pool) {
+
+    const greetNow = greetMe(pool)
 
     async function greetHandles(req, res) {
         res.render('index', {
-            names: await GreetFactory.output(),
-            counter: await GreetFactory.setCounter(),
+            names: await greetNow.output(),
+            counter: await greetNow.setCounter(),
             messages: req.flash('error') 
 
         })
     }
     async function clearnames() {
-        await GreetFactory.clearNamesStore();
+        await greetNow.clearNamesStore();
         res.redirect('/')
     }
 
     async function dataTable(req, res){
-    res.render('table', {name:await GreetFactory.loadingName() })
+    res.render('table', { name: await greetNow.loadingName() })
     }
 
     return {
