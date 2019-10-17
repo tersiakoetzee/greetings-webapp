@@ -1,5 +1,5 @@
 module.exports = function greetFactory(pool) {
-
+  // console.log(pool.query());
   var theGreeting = "";
 
   async function setGreeting(textVal, theLanguage) {
@@ -34,7 +34,7 @@ module.exports = function greetFactory(pool) {
 
 
   async function setCounter() {
-    let results = await pool.query('select COUNT(*) from names_greeted');
+    let results = await pool.query('SELECT COUNT(*) from names_greeted');
     return results.rows[0].count;
   }
 

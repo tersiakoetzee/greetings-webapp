@@ -1,7 +1,6 @@
 const greetMe =  require("./greetfactory");
 
 module.exports = function greetFunction(pool) {
-
     const greetNow = greetMe(pool)
 
     async function greetHandles(req, res) {

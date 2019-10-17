@@ -13,9 +13,8 @@ const Pool = pg.Pool;
 const pool = new Pool({
     connectionString: process.env.DATABASE_URL || "postgresql://codex:codex123@localhost/names_greeted"
 });
-
 const GreetFactory = greetingFactory(pool)
-const greetName = handle(GreetFactory)
+const greetName = handle(pool)
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -74,7 +73,7 @@ app.post('/nameCleared', async function (req, res){
 
 });
 
-const PORT = process.env.PORT || 3003;
+const PORT = process.env.PORT || 3004;
 app.listen(PORT, function () {
     console.log('start' + PORT);
 });
