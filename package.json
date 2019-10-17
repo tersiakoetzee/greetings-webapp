@@ -8,7 +8,6 @@
   },
   "scripts": {
     "test": "mocha",
-    "mocha": ".node_modules/bin/mocha",
     "start": "node index.js"
   },
   "author": "Tersia Koetzee",
@@ -23,6 +22,8 @@
     "express-handlebars": "^3.1.0",
     "express-session": "^1.16.2",
     "moment": "^2.24.0",
-    "pg": "^7.12.1"
+    "mysql": "^2.17.1",
+    "pg": "^7.12.1",
+    "prompt":"^1.0.0"
   }
 }
