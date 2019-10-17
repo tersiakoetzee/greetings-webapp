@@ -1,6 +1,6 @@
 const greetMe =  require("./greetfactory");
 
-module.exports = function greetFunction(pool) {
+module.exports =  function greetFunction(pool) {
     const greetNow = greetMe(pool)
 
     async function greetHandles(req, res) {
@@ -13,7 +13,6 @@ module.exports = function greetFunction(pool) {
     }
     async function clearnames() {
         await greetNow.clearNamesStore();
-        res.redirect('/')
     }
 
     async function dataTable(req, res){

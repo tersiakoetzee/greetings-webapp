@@ -46,7 +46,7 @@ app.get('/', greetName.greetHandles);
 
 
 
-app.post('/greetings', async function (req, res) {
+app.post('/', async function (req, res) {
 
     if (req.body.name === "" || req.body.language === undefined) {
         req.flash('error', 'Please enter your name and select a language');
@@ -54,7 +54,13 @@ app.post('/greetings', async function (req, res) {
     
     await GreetFactory.setGreeting(req.body.name, req.body.language)
 
-    res.redirect('/')
+    res.render('index', {
+        names: await GreetFactory.output(),
+        counter: await GreetFactory.setCounter(),
+        messages: req.flash('error') 
+
+    })
+
 
 });
 
