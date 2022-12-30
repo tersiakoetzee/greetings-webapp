@@ -13,7 +13,7 @@
   "author": "Tersia Koetzee",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^6.2.0"
+    "mocha": "^10.2.0"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
